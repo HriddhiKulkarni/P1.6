@@ -29,8 +29,37 @@ Work on implementing the source code
 Implementing the interface using Cordova/p5.js <br />
 Work on the development phase 
 
+## Final Implementation:
+Integrated P5.js with an Angular project 
+
+The mirror performs basic functionalities like displaying <br />
+* Calender events
+* Clock
+* Time
+* Weather 
+* Personalized news feed, text messages, social media notifications
+* Play music
+* Time spent using the mirror contents
+
+The mirror also provides health related information like <br />
+* Number of hours slept
+* Current body weight
+* Daily actitivy data like exercise and number of steps walked
+
+The mirror also performs other functionalities like <br />
+* Drag and drop widget icons 
+
+## Final interface gif:
+![p1 6-2](https://user-images.githubusercontent.com/18117167/68097550-3c724680-fe7d-11e9-961a-5b3b3f663d04.gif)
+
+## Why our design is different:
+* Applied Golden rules of interface design principles 
+* Adhered to the less than 7 rule and rule of thirds
+* Customizing icon location using 'Drag and drop' option 
+* Use the interface in light and dark mode
+
 ## Presentation page:
-[Link](https://hannahmestes.github.io/P1.6/)
+[Link](https://hannahmestes.github.io/HCI-Smart-Mirror/)
 
 ## Github repository link:
 [Link](https://github.com/hannahmestes/P1.6)

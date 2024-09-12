@@ -1,17 +1,117 @@
-<div class="container">
-  <div class="one"></div>
-  <div class="two"></div>
-  <div class="main">
-    <div class="alwayson">
-      <div class="clock">insert clock component here</div>
-      <div class="weather">insert weather component here</div>
-      <div class="schedule">insert schedule component here</div>
+<div class="one" [@lights] = "light ? 'on' : 'off'"></div>
+<div class="two" [@lights] = "light ? 'on' : 'off'"></div>
+
+<div class="container" > 
+  
+    <div class="swipe" wmAnimate="fadeInUp" (click)="control=true" *ngIf="!control" speed="normal">Touch For Settings</div>
+    <div class="controlpanel" [@darkmode]="darkmode ? 'on' : 'off'"  wmAnimate="fadeInUp" speed="fast"  *ngIf="control" cdkDrag>
+        <div class="closecontrol close" (click)="control=false"></div>
+      
+        <button class="light" (click)="turnLight()" [@touched] = "light ? 'on' : 'off'"></button> 
+        
+        <button class="darkmode" (click)="dark()" [@touched] = "darkmode ? 'on' : 'off'"></button> 
+
+        <button class="hideall" (click)="hideAll()" [@touched] = "hideall ? 'on' : 'off'"></button> 
+      <app-control></app-control>
+    
     </div>
-    <div class="menu">insert menu <br />component here</div>
-    <div class="controlpanel">insert control panel here</div>
+
+
+
+  <div class="gradient" [@darkmode2]="darkmode ? 'on' : 'off'"></div>
+  <div class="main" *ngIf="!hideall">
+    <div class="alwayson">
+      <div cdkDrag>
+         
+      <div class="clock" wmAnimate="fadeInLeft" speed="slow"><app-clock></app-clock></div>
+     <div class="date" wmAnimate="fadeInLeft" speed="slow" ><app-date></app-date></div>
+</div>
+
+<div cdkDrag wmAnimate="fadeInRight" speed="slow">
+  <div class="weather" wmAnimate="fadeInRight" speed="slow" ><h4 class="today"></h4><app-weather></app-weather></div>
+  <div class="day" wmAnimate="fadeInRight" speed="slow" >{{ now | date:'EEEE' }}</div>
+</div>
+
+<div class="huh"   wmAnimate="fadeInDown" speed="slow" cdkDrag>
+  <div class="schedule" > 
+    <div class="events"><h1>Upcoming Events</h1>
+      <app-schedule></app-schedule>
+    </div>
+    <div class="notifications">
+      <h1 *ngIf="twitternotif">Notifications:</h1>
+      
+      <app-notifications *ngIf="twitternotif || messagenotif"></app-notifications>
+    </div>        
+  </div>
+</div>
+</div>
+
+
+<button class="hidemenu" wmAnimate="fadeInRight" speed="slow" (click)='hideMenu()'>toggle menu</button>
+    <div wmAnimate="fadeInRight" speed="slow" cdkDragLockAxis="y" cdkDrag *ngIf="menu">
+       <div class="menu"[@darkmodemenu]="darkmode ? 'on' : 'off'" [@menuChoice] = "stateName" ></div>
+
+    <div class="choices" >
+        <div *ngIf="twitternotif"class="notif1"></div>
+        <div *ngIf="messagenotif" class="notif2"></div>
+        <div *ngIf="healthnotif" class="notif3"></div>
+        <button class="healthb" (click)='show("health")'><h1>health</h1></button>
+        <button class="newsb"  (click)='show("news")'><h1>news</h1></button>
+        <button class="messageb"  (click)='show("message")'><h1>messages</h1></button>
+        <button class="socialb" (click)='show("social")'><h1>social</h1></button>
+        <button class="musicb" (click)='show("music")'><h1>music</h1></button>
+    </div>
+    </div>
+
+   
+
+
+
+    
+   
+      
+     <div class="health" [@darkmode]="darkmode ? 'on' : 'off'"  wmAnimate="fadeInLeft" speed="normal" *ngIf="health" cdkDrag>
+        <div class="close" (click)='hide("health")'></div>
+       <app-health></app-health>
+    </div> 
+
+
+     <div class="news" [@darkmode]="darkmode ? 'on' : 'off'"  wmAnimate="fadeInLeft" speed="normal" *ngIf="news" cdkDrag>
+        <div class="close" (click)='hide("news")'></div>
+       <app-news></app-news>
+    </div>
+
+
+     <div class="message" [@darkmode]="darkmode ? 'on' : 'off'"  wmAnimate="fadeInLeft" speed="normal" *ngIf="message" cdkDrag>
+        <div class="close" (click)='hide("message")'></div>
+        <button class="unread" (click)='read("messages")'></button>
+        <div class="dot2" *ngIf="messagenotif"></div>
+        <div class="textmessage" *ngIf="textvisible" (click)="text()"><h1>Kat</h1><br />
+        Can you pick up the eggs at the store?</div>
+       <app-messages></app-messages>
+    </div>
+
+
+     <div class="social" [@darkmode]="darkmode ? 'on' : 'off'"   wmAnimate="fadeInLeft" speed="normal" *ngIf="social" cdkDrag>
+        <div class="close" (click)='hide("social")'></div>
+        <button class="unread" (click)='read("twitter")'></button>
+        <div class="dot3" *ngIf="twitternotif"></div>
+        <div class="textmessage" *ngIf="tweetvisible" (click)="tweet()"><h1>@twitterbot</h1><br />
+         Beep boop I am a bot</div>
+       <app-social></app-social>
+    </div>
+
+
+     <div class="music"[@darkmode]="darkmode ? 'on' : 'off'"   wmAnimate="fadeInLeft" speed="normal" *ngIf="music" cdkDrag>
+        <div class="close" (click)='hide("music")'></div>
+       <app-music></app-music>
+    </div>
+  
   </div>
 
-    <div class="mirror">
+  
+
+    <div class="mirror" >
       <app-mirror></app-mirror>
     </div>
   </div>
